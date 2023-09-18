@@ -29,7 +29,7 @@ export class Agents extends PingpongFBO {
       datas[idx + 0] = x // pos x
       datas[idx + 1] = y // pos y
       datas[idx + 2] = Math.random() // angle
-      datas[idx + 3] = 1
+      datas[idx + 3] = Math.round(i / count) // type (not used)
     }
 
     return datas

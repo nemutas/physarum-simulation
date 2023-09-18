@@ -14,7 +14,8 @@ const int DIM = 1;
 const float WEIGHT = 1.0 / pow(2.0 * float(DIM) + 1.0, 2.0);
 
 void main() {
-  float pheromone = texture2D(tEntityMap, vUv).r;
+  vec4 entity = texture2D(tEntityMap, vUv);
+  float pheromone = entity.r;
 
   vec2 transformedUv = (vUv - 0.5) * uUvTransform + 0.5;
   float outline = texture2D(tOutline, transformedUv).r;
@@ -32,5 +33,5 @@ void main() {
   vec3 fin = vec3(pheromone * uDecay, diffuse * uDecay, color * uDecay);
   fin = clamp(fin, 0.0, 1.0);
 
-  gl_FragColor = vec4(fin, 0.0);
+  gl_FragColor = vec4(fin, entity.w);
 }

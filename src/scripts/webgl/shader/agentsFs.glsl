@@ -21,16 +21,17 @@ float rand(in vec2 seed) {
 }
 
 void main() {
+  vec4 prev = texture2D(tPrev, vUv);
+  float type = prev.w;
+
   vec2 so = uSo * uPx;
   vec2 ss = uSs * uPx;
 
-  vec4 val = texture2D(tPrev, vUv);
+  float angle = prev.z * PI2;
 
-  float angle = val.z * PI2;
-
-  vec2 uvFL = val.xy + rot(angle - uSa) * so;
-  vec2 uvF  = val.xy + rot(angle) * so;
-  vec2 uvFR = val.xy + rot(angle + uSa) * so;
+  vec2 uvFL = prev.xy + rot(angle - uSa) * so;
+  vec2 uvF  = prev.xy + rot(angle) * so;
+  vec2 uvFR = prev.xy + rot(angle + uSa) * so;
 
   float fl = texture2D(tTrailMap, uvFL).g;
   float f = texture2D(tTrailMap, uvF).g;
@@ -38,7 +39,7 @@ void main() {
 
   if(fl < f && fr < f) {}
   else if(f < fl && f < fr) {
-    if(rand(val.xy) < 0.5) {
+    if(rand(prev.xy) < 0.5) {
       angle += uRa;
     } else {
       angle -= uRa;
@@ -48,10 +49,10 @@ void main() {
   else if(fr < fl) { angle -= uRa; }
 
   vec2 offset = rot(angle) * ss;
-  val.xy += offset;
+  prev.xy += offset;
 
-  val.xy = fract(val.xy);
-  val.z = angle / PI2;
+  prev.xy = fract(prev.xy);
+  prev.z = angle / PI2;
 
-  gl_FragColor = val;
+  gl_FragColor = prev;
 }

@@ -7,6 +7,6 @@ https://nemutas.github.io/physarum-simulation/
 <img src='https://github.com/nemutas/physarum-simulation/assets/46724121/164e920e-0624-477a-9d35-f4494c39f0be' alt='' width='700' />
 
 # Reference
-1. [アントコロニー最適化の概要｜Coding Adventure: Ant and Slime Simulations](https://youtu.be/X-iSQQgOd1A?si=s4OSY4xC9unAMO4b)
-2. [アルゴリズムの実装指針｜Sage Jenson - physarum](https://cargocollective.com/sagejenson/physarum)
-3. [WebGL(threejs)を使った実装例｜nicoptere - physarum](https://github.com/nicoptere/physarum)
+- アントコロニー最適化の概要：[Coding Adventure: Ant and Slime Simulations](https://youtu.be/X-iSQQgOd1A?si=s4OSY4xC9unAMO4b)
+- アルゴリズムの実装指針：[Sage Jenson - physarum](https://cargocollective.com/sagejenson/physarum)
+- WebGL(threejs)を使った実装例：[nicoptere - physarum](https://github.com/nicoptere/physarum)

@@ -5,6 +5,7 @@ import fragmentShader from './shader/screenFs.glsl'
 import { Trails } from './Trails'
 import { Agents } from './Agents'
 import { Entities } from './Entities'
+import { gui } from './Gui'
 
 export class Canvas {
   private trails!: Trails
@@ -74,6 +75,7 @@ export class Canvas {
       uniforms: {
         tTrailMap: { value: this.trails.texture },
         uUvTransform: { value: three.coveredScale(this.trails.width / this.trails.height) },
+        uColor: { value: new THREE.Color(0.77, 0.4, 0.4) },
       },
       vertexShader,
       fragmentShader,
@@ -81,6 +83,10 @@ export class Canvas {
     const mesh = new THREE.Mesh(geometry, material)
     three.scene.add(mesh)
     three.addDisposableObject(geometry, material)
+
+    const folder = gui.addFolder('Screen')
+    folder.addColor(material.uniforms.uColor, 'value').name('color')
+
     return mesh
   }
 
